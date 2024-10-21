@@ -1,0 +1,39 @@
+/* Sticky header styles */
+.sticky-header {
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    top: 0;
+    background-color: #333;
+    z-index: 1000;
+    width: 100%;
+    padding: 10px 0;
+    color: white;
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+  }
+  
+  .header-title {
+    margin: 0;
+    font-size: 24px;
+  }
+  
+  .logout-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px 15px;
+    display: inline-block;
+  }
+  
+  .logout-button:hover {
+    background-color: #555;
+    border-radius: 5px;
+  }
+  
