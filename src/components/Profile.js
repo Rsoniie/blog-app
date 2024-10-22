@@ -15,7 +15,8 @@ const ProfileScreen = () => {
       try {
         setLoading(true); // Start loading
         const token = localStorage.getItem('token'); // Assuming you're using a token for authentication
-        const response = await axios.get('http://localhost:8080/user/Profile', {
+        // const response = await axios.get('http://localhost:8080/user/Profile', {
+          const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/user/Profile`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

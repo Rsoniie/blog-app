@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8080/user';
+// const API_URL = 'http://localhost:8080/user';
 
 // Function to register a new user
 const register = async (userData) => {
   try {
-    const response = await axios.post(`${API_URL}/CreateUser`, userData);
+    const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/CreateUser`, userData);
     return response;
   } catch (error) {
     console.error('Error during registration', error);
@@ -33,7 +33,7 @@ const register = async (userData) => {
 const login = async (credentials) => {
   try {
     console.log(credentials);
-    const response = await axios.post(`${API_URL}/LoginUser`, credentials);
+    const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/LoginUser`, credentials);
     console.log(response);
 
     // Assuming the response contains the token and user information

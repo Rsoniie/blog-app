@@ -16,12 +16,12 @@ const CommentsPage = () => {
   const [showCommentForm, setShowCommentForm] = useState(false); // To toggle comment input form visibility
   const [visibleComments, setVisibleComments] = useState(5); // Limit the number of visible comments at a time
 
-  const API_URL = "http://localhost:8080/blog/";
+  // const API_URL = "http://localhost:8080/blog/";
 
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const response = await axios.get(`${API_URL}/all_comments/${blogId}`);
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/blog/all_comments/${blogId}`);
         if (response.data && response.data.net_comments) {
           setComments(response.data.net_comments);
         } else {
@@ -45,7 +45,7 @@ const CommentsPage = () => {
       // const user = localStorage.getItem('user');
       // console.log(user);
       const response = await axios.post(
-        `${API_URL}/comment/${blogId}`,
+        `${process.env.REACT_APP_BACKEND_URL}/blog/comment/${blogId}`,
         { comment: newComment,  }, // Send the new comment and name in the request body
         {
           headers: {

@@ -2,12 +2,12 @@ import axios from 'axios';
 import BlogCard from '../components/BlogCard';
 
 // Define the base URL for the API. Update it to match your backend server.
-const API_URL = 'http://localhost:8080/blog';
+// const API_URL = 'http://localhost:8080/blog';
 
 // Function to get all blogs
 const getAllBlogs = async () => {
   try {
-    const response = await axios.get(`${API_URL}/blogs`);
+    const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/blog/blogs`);
     return response;
   } catch (error) {
     console.error('Error fetching blogs', error);
@@ -34,7 +34,7 @@ const postBlog = async (blogData) => {
 
     // Make the POST request with the blog data and the token for authorization
     const response = await axios.post(
-      `http://localhost:8080/user/PostBlog`,
+      `${process.env.REACT_APP_BACKEND_URL}/user/PostBlog`,
       postData,  // Send extracted blog data as JSON
       {
         headers: {
@@ -80,7 +80,7 @@ const likeBlog = async (blogId) => {
     const token = localStorage.getItem('token')
     console.log(token);
     const response = await axios.get(
-      `${API_URL}/like/${blogId}`,
+      `${process.env.REACT_APP_BACKEND_URL}/blog/like/${blogId}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

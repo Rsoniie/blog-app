@@ -14,7 +14,8 @@ const EditProfile = () => {
     const fetchUserProfile = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:8080/user/Profile', {
+        // const response = await axios.get('http://ulr:8080/user/Profile', {
+          const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/user/Profile`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -38,7 +39,8 @@ const EditProfile = () => {
 
       // Make the request to update profile information
       await axios.put(
-        'http://localhost:8080/user/editProfile', // Your API endpoint
+        // 'http://localhost:8080/user/editProfile', // Your API endpoint
+        `${process.env.REACT_APP_BACKEND_URL}/user/editProfile`,
         {
           username: username, // Send the updated username
           description: description, // Send the updated description
