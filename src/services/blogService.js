@@ -1,4 +1,5 @@
 import axios from 'axios';
+import BlogCard from '../components/BlogCard';
 
 // Define the base URL for the API. Update it to match your backend server.
 const API_URL = 'http://localhost:8080/blog';
@@ -17,17 +18,33 @@ const getAllBlogs = async () => {
 // Function to post a new blog (requires user to be logged in)
 const postBlog = async (blogData) => {
   try {
+    // Destructure the blogData to extract specific fields
+    const { heading, body, description, keywords } = blogData;
+
+    // Create a new object to send as JSON
+    const postData = {
+      blog_heading: heading,
+      blog_body: body,
+      blog_description: description,
+      blog_keywords: keywords,
+    };
+
+    // Get the token from localStorage
     const token = localStorage.getItem('token');
+
+    // Make the POST request with the blog data and the token for authorization
     const response = await axios.post(
-      `${API_URL}`,
-      blogData,
+      `http://localhost:8080/user/PostBlog`,
+      postData,  // Send extracted blog data as JSON
       {
         headers: {
           Authorization: `Bearer ${token}`, // Send JWT token for authorization
         },
       }
     );
-    return response;
+
+    console.log(response);
+    return response; // Return the response to handle it where the function is called
   } catch (error) {
     console.error('Error posting blog', error);
     throw error; // Re-throw the error to handle it properly where called

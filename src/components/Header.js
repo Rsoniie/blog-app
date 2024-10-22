@@ -14,7 +14,7 @@ const Header = () => {
 
   return (
     <header>
-      <nav>
+      {/* <nav>
         <ul>
           <li>
             <Link to="/">Home</Link>
@@ -38,7 +38,7 @@ const Header = () => {
             </li>
           )}
         </ul>
-      </nav>
+      </nav> */}
     </header>
   );
 };

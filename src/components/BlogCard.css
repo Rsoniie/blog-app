@@ -1,98 +1,122 @@
-/* Styles for the BlogCard component */
+/* Blog Card container */
+.blog-cards-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Default card styling */
 .blog-card {
-    border: 1px solid #ccc;
-    padding: 20px;
-    border-radius: 8px;
-    width: 300px;
-    height: 400px; /* Fixed height for all cards */
-    text-align: left;
-    background-color: #f9f9f9;
-    margin: 10px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-    overflow: hidden; /* Ensure content stays within the fixed height */
-    display: flex;
-    flex-direction: column; /* Align content vertically */
-    justify-content: space-between; /* Spread content out */
-  }
-  
-  .blog-card:hover {
-    transform: scale(1.1); /* Grow on hover */
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Blurred shadow on hover */
-  }
-  
-  .blog-card-title {
-    font-size: 24px;
-    margin: 5px 0 10px 0; /* Reduced top margin */
-  }
-  
-  .blog-card-body {
-    font-size: 16px;
-    color: #666;
-    overflow: hidden;
-    text-overflow: ellipsis; /* Add ellipsis when content overflows */
-    max-height: 100px; /* Restrict the blog body height */
-  }
-  
-  .blog-card-buttons {
-    margin-top: 10px;
-  }
-  
-  .blog-card button {
-    margin-right: 10px;
-    padding: 5px 10px;
-    cursor: pointer;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-  }
-  
-  .blog-card button.comment-btn {
-    background-color: #28a745;
-  }
-  
-  /* Fullscreen styles */
-  .fullscreen-container {
-    position: fixed;
-    top: 10%;
-    left: 10%;
-    right: 10%;
-    bottom: 10%;
-    background-color: #fff;
-    z-index: 999;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    overflow-y: auto;
-  }
-  
-  .fullscreen-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 998;
-  }
-  
-  .fullscreen-back-button {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    padding: 10px 15px;
-    cursor: pointer;
-    background-color: #ff4757;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-  }
-  
-  .blog-user {
-    display: block;
-    font-size: 12px;
-    color: #888;
-    margin-bottom: 2px; /* Reduced bottom margin */
-  }
-  
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 300px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  background-color: white;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+/* Scale card on hover */
+.blog-card:hover {
+  transform: scale(1.025); /* Slightly increase size on hover */
+}
+
+/* Colors for beautification */
+.blog-card .blog-card-title {
+  color: green; /* Heading color */
+}
+
+/* Left align username in normal view */
+.blog-card .blog-user {
+  color: blue; /* Username color */
+  text-align: left; /* Left align username */
+  display: block;
+  transition: all 0.3s ease;
+}
+
+/* Blue likes button */
+.blog-card .like-btn {
+  background-color: white;
+  color: blue; /* Likes button in blue */
+  border: 1px solid blue;
+  padding: 8px 16px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.blog-card .like-btn:hover {
+  background-color: lightblue; /* Change background color on hover */
+  color: white;
+}
+
+/* Comment button styling */
+.blog-card .comment-btn {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.blog-card .comment-btn:hover {
+  background-color: darkred;
+}
+
+/* Enlarged (fullscreen) card */
+.blog-card.fullscreen {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  z-index: 10;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  overflow: auto;
+  transition: all 0.3s ease-in-out; /* Smooth transition for fullscreen */
+}
+
+/* Make sure the fullscreen card is not blurred */
+.blog-card.fullscreen {
+  filter: none;
+}
+
+/* Right align username when in fullscreen */
+.blog-card.fullscreen .blog-user {
+  text-align: right; /* Right align username when card is fullscreen */
+  color: blue; /* Keeping username color blue */
+}
+
+/* Back arrow for fullscreen mode */
+.back-arrow {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: blue; /* Blue back arrow */
+}
+
+.back-arrow:hover {
+  color: darkblue;
+}
+
+/* Dimmed background for effect when fullscreen card is open */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3); /* Dimmed background */
+  z-index: 9;
+}

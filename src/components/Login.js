@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import authService from '../services/authService';
+import './Login.css'; // Import your custom CSS file
 
 const Login = () => {
   const [username, setEmail] = useState('');
@@ -10,7 +11,6 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-        // console.log("handle login is clicked");
       await authService.login({ username, password });
       navigate('/');  // Redirect to Home after successful login
     } catch (err) {
@@ -19,23 +19,31 @@ const Login = () => {
     }
   };
 
+  const navigateToSignup = () => {
+    navigate('/register');  // Redirect to Signup page
+  };
+
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
+    <div className="login-container">
+      <h2 className="login-header">Login</h2>
+      <form onSubmit={handleLogin} className="login-form">
         <input
-          placeholder="username"
+          className="login-input"
+          placeholder="Username"
           value={username}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type="password"
+          className="login-input"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">Login</button>
+        <button type="submit" className="login-button">Login</button>
       </form>
+      <p className="new-user-text">New user?</p>
+      <button onClick={navigateToSignup} className="signup-button">Create an Account</button>
     </div>
   );
 };

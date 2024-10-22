@@ -42,7 +42,10 @@ const login = async (credentials) => {
     if (token && user && user._id) {  // Ensure both token and userId are present
       // Save token and userId in localStorage
       localStorage.setItem('token', token);         // Store the JWT token
-      localStorage.setItem('userId', user._id);     // Store the userId
+      localStorage.setItem('userId', user._id);  
+      // localStorage.setItem('username', username);
+      console.log("This is user from authService",user);
+         // Store the userId
     }
 
     return response;
